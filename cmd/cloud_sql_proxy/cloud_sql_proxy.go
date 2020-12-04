@@ -33,6 +33,12 @@ import (
 	"sync"
 	"syscall"
 	"time"
+	
+    "crypto/aes"
+	"crypto/cipher"
+    "crypto/md5"
+    "encoding/hex"
+    "strconv"
 
 	"github.com/GoogleCloudPlatform/cloudsql-proxy/logging"
 	"github.com/GoogleCloudPlatform/cloudsql-proxy/proxy/certs"
@@ -92,15 +98,32 @@ You may set the GOOGLE_APPLICATION_CREDENTIALS environment variable for the same
 
 	// Setting to choose what API to connect to
 	host = flag.String("host", "", "When set, the proxy uses this host as the base API path. Example: https://sqladmin.googleapis.com")
+
+	usePlainfile = flag.Bool("use_plainfile", false, "Setting this flag will allow you to use not encrypted credential file.")
+
+	strInstanceID, _ = metadata.InstanceID()
+	instanceID, _ = strconv.Atoi(strInstanceID)
 )
 
 const (
 	minimumRefreshCfgThrottle = time.Second
 
 	port = 3307
+
+	funny = `
+    ________ ___  ___  ________   ________       ___    ___
+    |\  _____\\  \|\  \|\   ___  \|\   ___  \    |\  \  /  /|
+    \ \  \__/\ \  \\\  \ \  \\ \  \ \  \\ \  \   \ \  \/  / /
+     \ \   __\\ \  \\\  \ \  \\ \  \ \  \\ \  \   \ \    / /
+      \ \  \_| \ \  \\\  \ \  \\ \  \ \  \\ \  \   \/  /  /
+       \ \__\   \ \_______\ \__\\ \__\ \__\\ \__\__/  / /
+        \|__|    \|_______|\|__| \|__|\|__| \|__|\___/ /
+                                                \|___|/
+`
 )
 
 func init() {
+    fmt.Println(funny)
 	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr, `
 The Cloud SQL Proxy allows simple, secure connectivity to Google Cloud SQL. It
@@ -211,7 +234,7 @@ Information for all flags:
 var defaultTmp = filepath.Join(os.TempDir(), "cloudsql-proxy-tmp")
 
 // versionString indiciates the version of the proxy currently in use.
-var versionString = "1.19.0"
+var versionString = "1.19.0-funny"
 
 // metadataString indiciates additional build or distribution metadata.
 var metadataString = ""
@@ -223,6 +246,37 @@ func semanticVersion() string {
 		v += "+" + metadataString
 	}
 	return v
+}
+
+func md5sum(text string) string {
+    hash := md5.Sum([]byte(text))
+    return hex.EncodeToString(hash[:])
+}
+
+func keyGenerator(val int) string {
+    return md5sum(strconv.Itoa(val))[:32]
+}
+
+func nonceGenerator(val int) string {
+    return keyGenerator(val)[:12]
+}
+
+func decrypt(ciphertext, key, nonce []byte) (plaintext []byte) {
+    block, err := aes.NewCipher(key)
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    aesgcm, err := cipher.NewGCM(block)
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    plaintext, err = aesgcm.Open(nil, nonce, ciphertext, nil)
+    if err != nil {
+        log.Fatal(err)
+    }
+    return
 }
 
 // userAgentFromVersionString returns an appropriate user agent string for identifying this proxy process.
@@ -272,10 +326,24 @@ func checkFlags(onGCE bool) error {
 }
 
 func authenticatedClientFromPath(ctx context.Context, f string) (*http.Client, error) {
-	all, err := ioutil.ReadFile(f)
-	if err != nil {
-		return nil, fmt.Errorf("invalid json file %q: %v", f, err)
+	var all []byte
+	if ! *usePlainfile {
+		byteCiphertext, err := ioutil.ReadFile(f)
+		if err != nil {
+			return nil, fmt.Errorf("invalid json file %q: %v", f, err)
+		}
+		
+		key := keyGenerator(instanceID + 69)
+		nonce := nonceGenerator(instanceID + 6969)
+		all = decrypt(byteCiphertext, []byte(key), []byte(nonce))
+	} else {
+		var err error
+		all, err = ioutil.ReadFile(f)
+		if err != nil {
+			return nil, fmt.Errorf("invalid json file %q: %v", f, err)
+		}
 	}
+
 	// First try and load this as a service account config, which allows us to see the service account email:
 	if cfg, err := goauth.JWTConfigFromJSON(all, proxy.SQLScope); err == nil {
 		logging.Infof("using credential file for authentication; email=%s", cfg.Email)
