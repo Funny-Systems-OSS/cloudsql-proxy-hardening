@@ -35,7 +35,7 @@ import (
 	"time"
 	"strconv"
 	
-	"github.com/Funny-Systems-OSS/funny"
+	"github.com/Funny-Systems-OSS/CloudSQL-Proxy-Hardening-Common"
 
 	"github.com/GoogleCloudPlatform/cloudsql-proxy/logging"
 	"github.com/GoogleCloudPlatform/cloudsql-proxy/proxy/certs"
