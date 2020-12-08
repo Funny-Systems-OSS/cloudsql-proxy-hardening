@@ -33,12 +33,9 @@ import (
 	"sync"
 	"syscall"
 	"time"
+	"strconv"
 	
-    "crypto/aes"
-	"crypto/cipher"
-    "crypto/md5"
-    "encoding/hex"
-    "strconv"
+	"github.com/Funny-Systems-OSS/funny"
 
 	"github.com/GoogleCloudPlatform/cloudsql-proxy/logging"
 	"github.com/GoogleCloudPlatform/cloudsql-proxy/proxy/certs"
@@ -109,21 +106,10 @@ const (
 	minimumRefreshCfgThrottle = time.Second
 
 	port = 3307
-
-	funny = `
-    ________ ___  ___  ________   ________       ___    ___
-    |\  _____\\  \|\  \|\   ___  \|\   ___  \    |\  \  /  /|
-    \ \  \__/\ \  \\\  \ \  \\ \  \ \  \\ \  \   \ \  \/  / /
-     \ \   __\\ \  \\\  \ \  \\ \  \ \  \\ \  \   \ \    / /
-      \ \  \_| \ \  \\\  \ \  \\ \  \ \  \\ \  \   \/  /  /
-       \ \__\   \ \_______\ \__\\ \__\ \__\\ \__\__/  / /
-        \|__|    \|_______|\|__| \|__|\|__| \|__|\___/ /
-                                                \|___|/
-`
 )
 
 func init() {
-    fmt.Println(funny)
+    fmt.Println(funny.Funny)
 	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr, `
 The Cloud SQL Proxy allows simple, secure connectivity to Google Cloud SQL. It
@@ -248,37 +234,6 @@ func semanticVersion() string {
 	return v
 }
 
-func md5sum(text string) string {
-    hash := md5.Sum([]byte(text))
-    return hex.EncodeToString(hash[:])
-}
-
-func keyGenerator(val int) string {
-    return md5sum(strconv.Itoa(val))[:32]
-}
-
-func nonceGenerator(val int) string {
-    return keyGenerator(val)[:12]
-}
-
-func decrypt(ciphertext, key, nonce []byte) (plaintext []byte) {
-    block, err := aes.NewCipher(key)
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    aesgcm, err := cipher.NewGCM(block)
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    plaintext, err = aesgcm.Open(nil, nonce, ciphertext, nil)
-    if err != nil {
-        log.Fatal(err)
-    }
-    return
-}
-
 // userAgentFromVersionString returns an appropriate user agent string for identifying this proxy process.
 func userAgentFromVersionString() string {
 	return "cloud_sql_proxy/" + semanticVersion()
@@ -333,9 +288,9 @@ func authenticatedClientFromPath(ctx context.Context, f string) (*http.Client, e
 			return nil, fmt.Errorf("invalid json file %q: %v", f, err)
 		}
 		
-		key := keyGenerator(instanceID + 69)
-		nonce := nonceGenerator(instanceID + 6969)
-		all = decrypt(byteCiphertext, []byte(key), []byte(nonce))
+		key := funny.KeyGenerator(instanceID + 69)
+		nonce := funny.NonceGenerator(instanceID + 6969)
+		all = funny.Decrypt(byteCiphertext, []byte(key), []byte(nonce))
 	} else {
 		var err error
 		all, err = ioutil.ReadFile(f)
