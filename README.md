@@ -1,5 +1,8 @@
 
 # Cloud SQL Proxy Hardening
+
+[中文版](https://github.com/Funny-Systems-OSS/CloudSQL-Proxy-Hardening/blob/master/README.zh.md)
+
 + [Features](#Features)
 + [Requirements](#Requirements)
 + [Installation](#Installation)
@@ -17,6 +20,6 @@ cloudsql-proxy: https://github.com/GoogleCloudPlatform/cloudsql-proxy/tree/v1.19
 ## Usage
 + ./cloud_sql_proxy_funny <-credential_file credential_file_path> [-use_plainfile]
   + -credential_file:\
-    The encrypted credential file be used to retrieve Service Account credential in cloud_sql_proxy.
+    The encrypted credential file be used to retrieve Service Account credential in cloud_sql_proxy_funny.
   + -use_plainfile:\
     Setting this flag will allow you to use not encrypted credential file.
