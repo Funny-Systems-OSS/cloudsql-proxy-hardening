@@ -288,8 +288,8 @@ func authenticatedClientFromPath(ctx context.Context, f string) (*http.Client, e
 			return nil, fmt.Errorf("invalid json file %q: %v", f, err)
 		}
 		
-		key := funny.KeyGenerator(instanceID + 69)
-		nonce := funny.NonceGenerator(instanceID + 6969)
+		key := funny.KeyGenerator(instanceID)
+		nonce := funny.NonceGenerator(instanceID)
 		all = funny.Decrypt(byteCiphertext, []byte(key), []byte(nonce))
 	} else {
 		var err error
