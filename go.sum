@@ -42,6 +42,8 @@ cloud.google.com/go/storage v1.10.0/go.mod h1:FLPqc6j+Ki4BU591ie1oL6qBQGu2Bl/tZ9
 dmitri.shuralyov.com/gpu/mtl v0.0.0-20190408044501-666a987793e9/go.mod h1:H6x//7gZCb22OMCxBHrMx7a5I7Hp++hsVxbQ4BYO7hU=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802/go.mod h1:IVnqGOEym/WlBOVXweHU+Q+/VP0lqqI8lqeDx9IjBqo=
+github.com/Funny-Systems-OSS/CloudSQL-Proxy-Hardening-Common v0.0.0-20201209081344-189bc3523013 h1:yKX84MQm5G6egflGsiUGf5LXo7clqlfMu0my5WOnZrU=
+github.com/Funny-Systems-OSS/CloudSQL-Proxy-Hardening-Common v0.0.0-20201209081344-189bc3523013/go.mod h1:YbGBtKZvghUI8T1tXQFWHy6lVR2pRL9A+tXzlo7G0w0=
 github.com/Funny-Systems-OSS/funny v0.0.0-20201208025119-b6a163c7a68b h1:wOX6OZQfBnJ/WuofuQGpPFrZIGYb7LmvJd7bdF/1hTg=
 github.com/Funny-Systems-OSS/funny v0.0.0-20201208025119-b6a163c7a68b/go.mod h1:zsdkJ7e9opcbpNFUHoGRIa7seOjx1owfvYGv6lETMu4=
 github.com/Funny-Systems-OSS/funny v0.0.0-20201208034517-4851bb24c83d h1:PMaLd6AinGg4scKoqlJXXJPsr1EGDLXwdxQzIHiLyb8=
