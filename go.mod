@@ -5,8 +5,7 @@ go 1.13
 require (
 	bazil.org/fuse v0.0.0-20200524192727-fb710f7dfd05
 	cloud.google.com/go v0.73.0
-	github.com/Funny-Systems-OSS/CloudSQL-Proxy-Hardening-Common v0.0.0-20201209081344-189bc3523013 // indirect
-	github.com/Funny-Systems-OSS/funny v0.0.0-20201208034517-4851bb24c83d
+	github.com/Funny-Systems-OSS/CloudSQL-Proxy-Hardening-Common v0.0.0-20201209081344-189bc3523013
 	github.com/denisenkom/go-mssqldb v0.9.0
 	github.com/go-sql-driver/mysql v1.5.0
 	github.com/lib/pq v1.9.0

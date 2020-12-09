@@ -44,10 +44,6 @@ github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03
 github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802/go.mod h1:IVnqGOEym/WlBOVXweHU+Q+/VP0lqqI8lqeDx9IjBqo=
 github.com/Funny-Systems-OSS/CloudSQL-Proxy-Hardening-Common v0.0.0-20201209081344-189bc3523013 h1:yKX84MQm5G6egflGsiUGf5LXo7clqlfMu0my5WOnZrU=
 github.com/Funny-Systems-OSS/CloudSQL-Proxy-Hardening-Common v0.0.0-20201209081344-189bc3523013/go.mod h1:YbGBtKZvghUI8T1tXQFWHy6lVR2pRL9A+tXzlo7G0w0=
-github.com/Funny-Systems-OSS/funny v0.0.0-20201208025119-b6a163c7a68b h1:wOX6OZQfBnJ/WuofuQGpPFrZIGYb7LmvJd7bdF/1hTg=
-github.com/Funny-Systems-OSS/funny v0.0.0-20201208025119-b6a163c7a68b/go.mod h1:zsdkJ7e9opcbpNFUHoGRIa7seOjx1owfvYGv6lETMu4=
-github.com/Funny-Systems-OSS/funny v0.0.0-20201208034517-4851bb24c83d h1:PMaLd6AinGg4scKoqlJXXJPsr1EGDLXwdxQzIHiLyb8=
-github.com/Funny-Systems-OSS/funny v0.0.0-20201208034517-4851bb24c83d/go.mod h1:zsdkJ7e9opcbpNFUHoGRIa7seOjx1owfvYGv6lETMu4=
 github.com/census-instrumentation/opencensus-proto v0.2.1/go.mod h1:f6KPmirojxKA12rnyqOA5BBL4O983OfeGPqjHWSTneU=
 github.com/chzyer/logex v1.1.10/go.mod h1:+Ywpsq7O8HXn0nuIou7OrIPyXbp3wmkHB+jjWRnGsAI=
 github.com/chzyer/readline v0.0.0-20180603132655-2972be24d48e/go.mod h1:nSuG5e5PlCu98SY8svDHJxuZscDgtXS6KTTbou5AhLI=
@@ -147,8 +143,6 @@ github.com/kisielk/gotool v1.0.0/go.mod h1:XhKaO+MFFWcvkIS/tQcRk01m1F5IRFswLeQ+o
 github.com/kr/pretty v0.1.0/go.mod h1:dAy3ld7l9f0ibDNOQOHHMYYIIbhfbHSm3C4ZsoJORNo=
 github.com/kr/pty v1.1.1/go.mod h1:pFQYn66WHrOpPYNljwOMqo10TkYh1fy3cYio2l3bCsQ=
 github.com/kr/text v0.1.0/go.mod h1:4Jbv+DJW3UT/LiOwJeYQe1efqtUx/iVham/4vfdArNI=
-github.com/lib/pq v1.8.0 h1:9xohqzkUwzR4Ga4ivdTcawVS89YSDVxXMa3xJX3cGzg=
-github.com/lib/pq v1.8.0/go.mod h1:AlVN5x4E4T544tWzH6hKfbfQvm3HdbOxrmggDNAPY9o=
 github.com/lib/pq v1.9.0 h1:L8nSXQQzAYByakOFMTwpjRoHsMJklur4Gi59b6VivR8=
 github.com/lib/pq v1.9.0/go.mod h1:AlVN5x4E4T544tWzH6hKfbfQvm3HdbOxrmggDNAPY9o=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
