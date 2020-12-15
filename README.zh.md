@@ -5,6 +5,7 @@
 + [需求](#需求)
 + [安裝](#安裝)
 + [使用](#使用)
++ [兔肚](#兔肚)
 ## Fork from
 cloudsql-proxy: https://github.com/GoogleCloudPlatform/cloudsql-proxy/tree/v1.19.0
 ## 功能
@@ -21,3 +22,5 @@ cloudsql-proxy: https://github.com/GoogleCloudPlatform/cloudsql-proxy/tree/v1.19
     用於在 cloud_sql_proxy_funny 中認證服務帳號的金鑰。
   + -use_plainfile:\
     可選參數。設置時可使用明文金鑰檔。
+## 兔肚
++ 非 debug 模式假裝自己是一般 cloud_sql_proxy
