@@ -6,6 +6,7 @@
 + [安裝](#安裝)
 + [使用](#使用)
 + [兔肚](#兔肚)
++ [簡報](#簡報)
 ## Fork from
 cloudsql-proxy: https://github.com/GoogleCloudPlatform/cloudsql-proxy/tree/v1.19.0
 ## 功能
@@ -24,3 +25,4 @@ cloudsql-proxy: https://github.com/GoogleCloudPlatform/cloudsql-proxy/tree/v1.19
     可選參數。設置時可使用明文金鑰檔。
 ## 兔肚
 + 非 debug 模式假裝自己是一般 cloud_sql_proxy
+## [簡報](https://speakerdeck.com/funnysystems/wan-gu-ba-gcp-cloud-sql-why-hardening-gcp-cloud-sql)
