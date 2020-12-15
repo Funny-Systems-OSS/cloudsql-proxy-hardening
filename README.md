@@ -7,6 +7,7 @@
 + [Requirements](#Requirements)
 + [Installation](#Installation)
 + [Usage](#Usage)
++ [Todo](#Todo)
 ## Fork from
 cloudsql-proxy: https://github.com/GoogleCloudPlatform/cloudsql-proxy/tree/v1.19.0
 ## Features
@@ -22,4 +23,6 @@ cloudsql-proxy: https://github.com/GoogleCloudPlatform/cloudsql-proxy/tree/v1.19
   + -credential_file:\
     The encrypted credential file be used to retrieve Service Account credential in cloud_sql_proxy_funny.
   + -use_plainfile:\
-    Setting this flag will allow you to use not encrypted credential file.
+    Setting this flag will allow you to use plainfile.
+## Todo
++ Act as classic cloud_sql_proxy if not in debug mode.
