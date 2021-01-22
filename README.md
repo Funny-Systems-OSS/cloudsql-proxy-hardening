@@ -17,7 +17,7 @@ CloudSQL Proxy Hardening Encryptor: https://github.com/Funny-Systems-OSS/CloudSQ
 + Compare with original Cloud SQL Proxy
   + Software             | Google Cloud SQL Proxy  | Cloud SQL Proxy Hardening (OSS Edition) | Cloud SQL Proxy Hardening (Enterpise Edition)
     ---------------------|-------------------------|-----------------------------------------|----------------------------------------------
-    Credential File      | Plaintext               | Ciphertext                              | Ciphertext
+    Credential File      | Plaintext               | **Ciphertext**                          | **Ciphertext**
     Bind with Instance   | No                      | **Yes**                                 | **Yes**
     Support Auto-Scaling | No                      | No                                      | **Yes**
     Authentication       | Service Account         | Serivce Account & **Instance ID**       | **ENHANCED**
